@@ -1,5 +1,5 @@
-import re
-from pprint import pprint
+import platform
+import pyfiglet
 from termcolor import colored, cprint
 import inquirer
 import time
@@ -8,42 +8,72 @@ import os
 path_procfile = './Procfile'
 path_runtime = './runtime.txt'
 path_requirements = './requirements.txt'
+python_version = platform.python_version()
+current_dir = os.getcwd()
+current_namedir = os.path.basename(os.getcwd())
+procfile_config = f'web: gunicorn {current_namedir}.wsgi:application --log-file - --log-level debug\npython manage.py ' \
+                  'collectstatic --noinput\nmanage.py migrate '
+runtime_config = f'python-{python_version}'
 
-
-current_dir = os.path.basename(os.getcwd())
 
 def askNeeded():
     questions = [
         inquirer.Checkbox('file',
                           message="What file do you want to?",
-                          choices=['Procfile', 'Runtime.txt', 'Requirements.txt'],
+                          choices=['Procfile', 'Runtime.txt'],
                           ),
     ]
     answers = inquirer.prompt(questions)
+    return answers['file']
 
 
-def checkExistingFiles():
-    if os.path.isfile(path_procfile) and os.path.isfile(path_runtime):
-        value = input('The file already exists. Would you like to overwrite it?')
-        if value == 'y':
-            start = time.time()
-            print(10 + 5)
-            end = time.time()
-            print('Overwriting in ', round((end - start) * 10 ** 3, 2), "ms")
-        else:
-            print('Good Bye!')
+def checkExistingFiles(procfile, runtime):
+    if os.path.isfile(procfile) and os.path.isfile(runtime):
+        questions = [
+            inquirer.Confirm('overwrite',
+                             message="The file already exists. Would you like to overwrite it?", default=False),
+        ]
+        answers = inquirer.prompt(questions)
+        return answers['overwrite']
 
 
-# text = colored('Hello, World!', 'red', attrs=['reverse', 'blink'])
-# print(text)
-# questions = [
-#   inquirer.Text('name', message="What's your name"),
-#   inquirer.Text('surname', message="What's your surname"),
-#   inquirer.Text('phone', message="What's your phone number",
-#                 validate=lambda _, x: re.match('\+?\d[\d ]+\d', x),
-#                 )
-# ]
-# answers = inquirer.prompt(questions)
-# print(answers)
+def createProcfile(dir_path, config):
+    try:
+        with open(f'{dir_path}/Procfile', 'w') as f:
+            f.write(config)
+    except FileNotFoundError:
+        print(f"The '{dir_path}' directory does not exist")
+
+
+def createRuntime(dir_path, config):
+    try:
+        with open(f'{dir_path}/runtime.txt', 'w') as f:
+            f.write(config)
+    except FileNotFoundError:
+        print(f"The '{dir_path}' directory does not exist")
+
+
+# TODO: Create function for pip freeze
+
 if __name__ == '__main__':
-    checkExistingFiles()
+    intro_layout = pyfiglet.figlet_format("Django Tools")
+    print(intro_layout)
+    cprint("Welcome to django deploy tools ! Thanks for using my tools. =D", 'blue', attrs=['blink'])
+    time.sleep(2)
+    ask_file = askNeeded()
+    ask_overwrite = checkExistingFiles(path_procfile, path_runtime)
+    if 'Procfile' and 'Runtime.txt' in ask_file:
+        if ask_overwrite:
+            start = time.time()
+            createProcfile(current_dir, procfile_config)
+            createRuntime(current_dir, runtime_config)
+            end = time.time()
+            cprint('Overwriting in ', round((end - start) * 10 ** 3, 2), "ms")
+        else:
+            start = time.time()
+            createProcfile(current_dir, procfile_config)
+            createRuntime(current_dir, runtime_config)
+            end = time.time()
+            cprint('Overwriting in ', round((end - start) * 10 ** 3, 2), "ms")
+    else:
+        print("Please provide")
