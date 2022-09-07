@@ -5,9 +5,9 @@
 
 * [x] Choose a library to use for user interaction
 * [ ] CLI will ask questions:
-  * [] Ask what file you want to create
-  * [] Check if file already exists...
+  * [x] Ask what file you want to create
+  * [x] Check if file already exists...
     * Ask if they want to override
-  * [] What is the name of the project ?
-    * [] default to current directory name
+  * [x] What is the name of the project ?
+    * [x] default to current directory name
   * [] Would you like to doing pip freeze ?
