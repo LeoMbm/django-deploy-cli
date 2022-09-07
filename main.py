@@ -5,11 +5,24 @@ import inquirer
 import time
 import os
 
+path_procfile = './Procfile'
+path_runtime = './runtime.txt'
+path_requirements = './requirements.txt'
+
+
+current_dir = os.path.basename(os.getcwd())
+
+def askNeeded():
+    questions = [
+        inquirer.Checkbox('file',
+                          message="What file do you want to?",
+                          choices=['Procfile', 'Runtime.txt', 'Requirements.txt'],
+                          ),
+    ]
+    answers = inquirer.prompt(questions)
+
 
 def checkExistingFiles():
-    path_procfile = './Procfile'
-    path_runtime = './runtime.txt'
-    path_requirements = './requirements.txt'
     if os.path.isfile(path_procfile) and os.path.isfile(path_runtime):
         value = input('The file already exists. Would you like to overwrite it?')
         if value == 'y':
