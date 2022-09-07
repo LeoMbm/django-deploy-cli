@@ -3,7 +3,7 @@
 
 ## TODO
 
-* [] Choose a library to use for user interaction
+* [x] Choose a library to use for user interaction
 * [ ] CLI will ask questions:
   * [] Check if file already exists...
     * Ask if they want to override
