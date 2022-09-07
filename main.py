@@ -70,10 +70,6 @@ if __name__ == '__main__':
             end = time.time()
             cprint('Overwriting in ', round((end - start) * 10 ** 3, 2), "ms")
         else:
-            start = time.time()
-            createProcfile(current_dir, procfile_config)
-            createRuntime(current_dir, runtime_config)
-            end = time.time()
-            cprint('Overwriting in ', round((end - start) * 10 ** 3, 2), "ms")
+            cprint('Good Bye', 'blue')
     else:
-        print("Please provide")
+        cprint('Good Bye', 'blue')
