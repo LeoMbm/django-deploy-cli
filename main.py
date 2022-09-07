@@ -21,7 +21,6 @@ def checkExistingFiles():
             print('Good Bye!')
 
 
-checkExistingFiles()
 # text = colored('Hello, World!', 'red', attrs=['reverse', 'blink'])
 # print(text)
 # questions = [
@@ -33,3 +32,5 @@ checkExistingFiles()
 # ]
 # answers = inquirer.prompt(questions)
 # print(answers)
+if __name__ == '__main__':
+    checkExistingFiles()
