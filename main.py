@@ -1,6 +1,8 @@
 import platform
+import sys
+
 import pyfiglet
-from termcolor import colored, cprint
+from termcolor import cprint
 import inquirer
 import time
 import os
@@ -55,6 +57,7 @@ def createRuntime(dir_path, config):
 
 # TODO: Create function for pip freeze
 
+
 if __name__ == '__main__':
     intro_layout = pyfiglet.figlet_format("Django Tools")
     print(intro_layout)
@@ -68,8 +71,27 @@ if __name__ == '__main__':
             createProcfile(current_dir, procfile_config)
             createRuntime(current_dir, runtime_config)
             end = time.time()
-            cprint('Overwriting in ', round((end - start) * 10 ** 3, 2), "ms")
+            print('Overwriting in ', round((end - start) * 10 ** 3, 2), "ms")
         else:
-            cprint('Good Bye', 'blue')
-    else:
-        cprint('Good Bye', 'blue')
+            createProcfile(current_dir, procfile_config)
+            createRuntime(current_dir, runtime_config)
+            sys.exit()
+    if 'Procfile' in ask_file:
+        if ask_overwrite:
+            start = time.time()
+            createProcfile(current_dir, procfile_config)
+            end = time.time()
+            print('Overwriting in ', round((end - start) * 10 ** 3, 2), "ms")
+        else:
+            createProcfile(current_dir, procfile_config)
+            sys.exit()
+
+    if 'Runtime.txt' in ask_file:
+        if ask_overwrite:
+            start = time.time()
+            createRuntime(current_dir, procfile_config)
+            end = time.time()
+            print('Overwriting in ', round((end - start) * 10 ** 3, 2), "ms")
+        else:
+            createRuntime(current_dir, procfile_config)
+            sys.exit()
