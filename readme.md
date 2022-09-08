@@ -16,6 +16,5 @@ in dj-tools-deploy-cli/src/
 ```
 python3 main.py
 ```
-
 ### Links
 * [GitHub repository](https://github.com/LeoMbm/django-deploy-cli)
