@@ -1,20 +1,10 @@
-name = "django-deploy-cli"
-version = "0.0.1"
-description = "Generate your Procfile, runtime.txt and requirements.txt from the CLI."
-authors = [
-    { name = "Leo Mbm", email = "leo.j.mbm@gmail.com" }
+[build-system]
+requires = [
+    "setuptools>=42",
+    "wheel"
 ]
-license = { file = "LICENSE.txt" }
-readme = "readme.md"
-requires-python = ">=3.10"
-
-keywords = ["packaging", "dependency", "infer", "pyproject.toml"]
-
-classifiers = [
-    "Topic :: Software Development"
-]
-
-# Requirements: This is done differently by poetry!
+build-backend = "setuptools.build_meta"
+[metadata]
 dependencies = [
     "Click>=7.0",
     "asgiref==3.5.2",
@@ -48,13 +38,3 @@ dev = [
 homepage = "https://github.com/LeoMbm/django-deploy-cli"
 documentation = "https://github.com/LeoMbm/django-deploy-cli"
 repository = "https://github.com/LeoMbm/django-deploy-cli"
-
-[project.scripts]
-poetry = "django-deploy-cli:main"
-
-[build-system]
-requires = [
-    "setuptools >= 63.4.3",
-    "wheel"
-]
-build-backend = "setuptools.build_meta"
