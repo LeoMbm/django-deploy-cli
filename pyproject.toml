@@ -1,5 +1,5 @@
 name = "django-deploy-cli"
-version = "0.1.0"
+version = "0.0.1"
 description = "Generate your Procfile, runtime.txt and requirements.txt from the CLI."
 authors = [
     { name = "Leo Mbm", email = "leo.j.mbm@gmail.com" }
@@ -55,6 +55,6 @@ poetry = "django-deploy-cli:main"
 [build-system]
 requires = [
     "setuptools >= 63.4.3",
-    "setuptools_scm >= 2.0.0, <3"
+    "wheel"
 ]
 build-backend = "setuptools.build_meta"
