@@ -7,9 +7,9 @@ import inquirer
 import time
 import os
 
-path_procfile = '../Procfile'
-path_runtime = '../runtime.txt'
-path_requirements = '../requirements.txt'
+path_procfile = '../../Procfile'
+path_runtime = '../../runtime.txt'
+path_requirements = '../../requirements.txt'
 path_env = sys.prefix.split('/')
 python_version = platform.python_version()
 current_dir = os.getcwd()

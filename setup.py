@@ -1,0 +1,33 @@
+from distutils.core import setup
+setup(
+  name = 'django-deploy',
+  packages = ['django-deploy'],
+  version = '0.1',
+  license='MIT',
+  description = 'Generate your Procfile, runtime.txt and requirements.txt from the CLI.',
+  author = 'Leo Mbm',
+  author_email = 'leo.j.mbm@gmail.com',
+  url = 'https://github.com/LeoMbm/django-deploy-cli',
+  download_url = 'https://github.com/LeoMbm/django-deploy-cli/archive/refs/tags/v0.1.tar.gz',
+  keywords = ['Python', 'Django', 'CommandLine'],
+  install_requires=[
+          'sys',
+          'platform',
+          'pyfiglet',
+          'termcolor',
+          'inquirer',
+          'time',
+          'os',
+      ],
+  classifiers=[
+    'Development Status :: 3 - Alpha',
+    'Intended Audience :: Developers',
+    'Topic :: Software Development :: Build Tools',
+    'License :: MIT License',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.10',
+  ],
+)
