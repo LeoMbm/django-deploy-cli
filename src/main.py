@@ -7,9 +7,10 @@ import inquirer
 import time
 import os
 
-path_procfile = './Procfile'
-path_runtime = './runtime.txt'
-path_requirements = './requirements.txt'
+path_procfile = '../Procfile'
+path_runtime = '../runtime.txt'
+path_requirements = '../requirements.txt'
+path_env = sys.prefix.split('/')
 python_version = platform.python_version()
 current_dir = os.getcwd()
 current_namedir = os.path.basename(os.getcwd())
@@ -55,7 +56,34 @@ def createRuntime(dir_path, config):
         print(f"The '{dir_path}' directory does not exist")
 
 
-# TODO: Create function for pip freeze
+def installDependecies(path):
+    if path == 'venv':
+        start_time = time.time()
+        os.system('pip install psycopg2 django-environ gunicorn django-heroku')
+        os.system('pip freeze > requirements.txt')
+        cprint('Pip freeze executed', 'green')
+        end_time = time.time()
+        print('Installing in ', round((end_time - start_time) * 10 ** 3, 2), "ms")
+    else:
+        cprint('You must have a virtual environment installed to install dependencies', 'red')
+
+
+def askForInstallation():
+    questions = [
+        inquirer.Confirm('installing',
+                         message="Do you want to install dependencies?", default=True),
+    ]
+    answers = inquirer.prompt(questions)
+    return answers['installing']
+
+
+def askForCreateFile():
+    questions = [
+        inquirer.Confirm('create',
+                         message="Do you want to create files ?", default=True),
+    ]
+    answers = inquirer.prompt(questions)
+    return answers['create']
 
 
 if __name__ == '__main__':
@@ -64,34 +92,17 @@ if __name__ == '__main__':
     cprint("Welcome to django deploy tools ! Thanks for using my tools. =D", 'blue', attrs=['blink'])
     time.sleep(2)
     ask_file = askNeeded()
+    ask_create = askForCreateFile()
     ask_overwrite = checkExistingFiles(path_procfile, path_runtime)
     if 'Procfile' and 'Runtime.txt' in ask_file:
-        if ask_overwrite:
+        if ask_create or ask_overwrite:
             start = time.time()
             createProcfile(current_dir, procfile_config)
             createRuntime(current_dir, runtime_config)
             end = time.time()
             print('Overwriting in ', round((end - start) * 10 ** 3, 2), "ms")
-        else:
-            createProcfile(current_dir, procfile_config)
-            createRuntime(current_dir, runtime_config)
-            sys.exit()
-    if 'Procfile' in ask_file:
-        if ask_overwrite:
-            start = time.time()
-            createProcfile(current_dir, procfile_config)
-            end = time.time()
-            print('Overwriting in ', round((end - start) * 10 ** 3, 2), "ms")
-        else:
-            createProcfile(current_dir, procfile_config)
-            sys.exit()
-
-    if 'Runtime.txt' in ask_file:
-        if ask_overwrite:
-            start = time.time()
-            createRuntime(current_dir, procfile_config)
-            end = time.time()
-            print('Overwriting in ', round((end - start) * 10 ** 3, 2), "ms")
-        else:
-            createRuntime(current_dir, procfile_config)
-            sys.exit()
+            install_ask = askForInstallation()
+            if install_ask:
+                installDependecies(path_env[5])
+    else:
+        cprint('Good bye', 'blue')
