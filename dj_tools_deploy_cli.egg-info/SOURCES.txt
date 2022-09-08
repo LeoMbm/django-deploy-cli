@@ -1,8 +1,0 @@
-LICENSE.txt
-setup.cfg
-setup.py
-dj_tools_deploy_cli.egg-info/PKG-INFO
-dj_tools_deploy_cli.egg-info/SOURCES.txt
-dj_tools_deploy_cli.egg-info/dependency_links.txt
-dj_tools_deploy_cli.egg-info/requires.txt
-dj_tools_deploy_cli.egg-info/top_level.txt

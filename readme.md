@@ -17,8 +17,5 @@ in dj-tools-deploy-cli/src/
 python3 main.py
 ```
 
-You can see if your package has successfully uploaded by navigating
-to the URL https://pypi.org/project/<sampleproject> where `sampleproject` is the name of your project that you uploaded. 
-It may take a minute or two for your project to appear on the site.
 ### Links
 * [GitHub repository](https://github.com/LeoMbm/django-deploy-cli)

@@ -3,8 +3,8 @@ from pathlib import Path
 this_directory = Path(__file__).parent
 long_description = (this_directory / "readme.md").read_text()
 setup(
-  name = 'dj-tools-deploy-cli',
-  packages = ['dj-tools-deploy-cli'],
+  name = 'dj-deploy-cli',
+  packages = ['dj-deploy-cli'],
   version = '0.1',
   license='MIT',
   description = 'Generate your Procfile, runtime.txt and requirements.txt from the CLI.',
