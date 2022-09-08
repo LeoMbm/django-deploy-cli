@@ -1,7 +1,7 @@
 from distutils.core import setup
 setup(
-  name = 'django-deploy',
-  packages = ['django-deploy'],
+  name = 'dj-tools-deploy-cli',
+  packages = ['dj-tools-deploy-cli'],
   version = '0.1',
   license='MIT',
   description = 'Generate your Procfile, runtime.txt and requirements.txt from the CLI.',
@@ -23,7 +23,6 @@ setup(
     'Development Status :: 3 - Alpha',
     'Intended Audience :: Developers',
     'Topic :: Software Development :: Build Tools',
-    'License :: MIT License',
     'Programming Language :: Python :: 3',
     'Programming Language :: Python :: 3.6',
     'Programming Language :: Python :: 3.7',

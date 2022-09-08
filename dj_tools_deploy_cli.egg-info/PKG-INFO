@@ -1,5 +1,5 @@
 Metadata-Version: 2.1
-Name: django-deploy
+Name: dj-tools-deploy-cli
 Version: 0.1
 Summary: Generate your Procfile, runtime.txt and requirements.txt from the CLI.
 Home-page: https://github.com/LeoMbm/django-deploy-cli
@@ -11,7 +11,6 @@ Keywords: Python,Django,CommandLine
 Classifier: Development Status :: 3 - Alpha
 Classifier: Intended Audience :: Developers
 Classifier: Topic :: Software Development :: Build Tools
-Classifier: License :: MIT License
 Classifier: Programming Language :: Python :: 3
 Classifier: Programming Language :: Python :: 3.6
 Classifier: Programming Language :: Python :: 3.7
