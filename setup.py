@@ -1,10 +1,15 @@
 from distutils.core import setup
+from pathlib import Path
+this_directory = Path(__file__).parent
+long_description = (this_directory / "readme.md").read_text()
 setup(
   name = 'dj-tools-deploy-cli',
   packages = ['dj-tools-deploy-cli'],
   version = '0.1',
   license='MIT',
   description = 'Generate your Procfile, runtime.txt and requirements.txt from the CLI.',
+  long_description=long_description,
+  long_description_content_type='text/markdown',
   author = 'Leo Mbm',
   author_email = 'leo.j.mbm@gmail.com',
   url = 'https://github.com/LeoMbm/django-deploy-cli',
