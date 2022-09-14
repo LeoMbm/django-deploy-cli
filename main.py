@@ -61,11 +61,11 @@ def installDependecies(path):
         start_time = time.time()
         os.system('pip install psycopg2 django-environ gunicorn django-heroku')
         os.system('pip freeze > requirements.txt')
-        cprint('Pip freeze executed', 'green')
+        print('Pip freeze executed', 'green')
         end_time = time.time()
         print('Installing in ', round((end_time - start_time) * 10 ** 3, 2), "ms")
     else:
-        cprint('You must have a virtual environment installed to install dependencies', 'red')
+        print('You must have a virtual environment installed to install dependencies', 'red')
 
 
 def askForInstallation():
@@ -87,8 +87,8 @@ def askForCreateFile():
 
 
 if __name__ == '__main__':
-    intro_layout = pyfiglet.figlet_format("Django Tools")
-    print(intro_layout)
+    # intro_layout = pyfiglet.figlet_format("Django Tools")
+    # print(intro_layout)
     cprint("Welcome to django deploy tools ! Thanks for using my tools. =D", 'blue', attrs=['blink'])
     time.sleep(2)
     ask_file = askNeeded()
